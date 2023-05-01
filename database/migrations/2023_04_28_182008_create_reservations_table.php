@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('code')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('trep_id');
+            $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('seat_id');
             $table->unsignedBigInteger('from_station_id');
             $table->unsignedBigInteger('to_station_id');

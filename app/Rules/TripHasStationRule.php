@@ -21,6 +21,6 @@ class TripHasStationRule implements Rule
 
     public function message()
     {
-        return 'This object does not belong to you.';
+        return 'المحطة غير متاحة بالرحلة';
     }
 }

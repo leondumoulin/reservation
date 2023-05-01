@@ -42,7 +42,7 @@ class TripSeed extends Seeder
 
         Reservation::create([
             'user_id' => 1,
-            'trep_id' => 1,
+            'trip_id' => 1,
             'seat_id' => 1,
             'from_station_id' => 1,
             'to_station_id' => 3,
