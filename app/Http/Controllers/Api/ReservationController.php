@@ -43,7 +43,7 @@ class ReservationController extends Controller
 
             $reservation = $trip->reservation()->create($data);
         }
-        return response()->json($reservation->code);
+        return response()->json(['code' => $reservation->code], 201);
     }
 
 }
