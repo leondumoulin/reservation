@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 
-class ListAvailableSeatsTest extends TestCase
+class ReservationTest extends TestCase
 {
     /**
      * A basic unit test example.
@@ -12,7 +12,7 @@ class ListAvailableSeatsTest extends TestCase
 
     public function testListAvailableSeats(): void
     {
-        $this->json('get', '/api/available-seats/trip/1?from_station=3&to_station=5')
+        $this->json('get', '/api/available-seats/trip/1?from_station=3&to_station=5', [], ['X-API-KEY' => env('API_KEY')])
             ->assertStatus(200)
             ->assertJson([
                 "data" => [
@@ -27,7 +27,7 @@ class ListAvailableSeatsTest extends TestCase
 
     public function testRequiredTripForReservation()
     {
-        $this->json('POST', '/api/reservation/trip/10', ['Accept' => 'application/json'])
+        $this->json('POST', '/api/reservation/trip/10', ['Accept' => 'application/json'], ['X-API-KEY' => env('API_KEY')])
             ->assertStatus(422)
             ->assertJson([
                 "error" => "record not found",
@@ -43,7 +43,7 @@ class ListAvailableSeatsTest extends TestCase
             "to_station_id" => "3",
         ];
 
-        $this->json('POST', '/api/reservation/trip/1', $userData, ['Accept' => 'application/json'])
+        $this->json('POST', '/api/reservation/trip/1', $userData, ['Accept' => 'application/json', 'X-API-KEY' => env('API_KEY')])
             ->assertStatus(201)
             ->assertJsonStructure([
                 "code",
@@ -59,7 +59,7 @@ class ListAvailableSeatsTest extends TestCase
             "to_station_id" => "3",
         ];
 
-        $this->json('POST', '/api/reservation/trip/1', $userData, ['Accept' => 'application/json'])
+        $this->json('POST', '/api/reservation/trip/1', $userData, ['Accept' => 'application/json', 'X-API-KEY' => env('API_KEY')])
             ->assertStatus(422)
             ->assertJson([
                 "seat_id" => [
